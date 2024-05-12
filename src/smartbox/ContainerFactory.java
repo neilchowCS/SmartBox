@@ -45,11 +45,12 @@ public class ContainerFactory implements AppFactory {
 
     @Override
     public String[] getHelp() {
-        return new String[0];
+        return new String[]{"Add: add named component to container", "Rem: remove named component from container"
+        , "Run: run named App"};
     }
 
     @Override
     public String about() {
-        return null;
+        return "SmartBox: Container Component";
     }
 }
