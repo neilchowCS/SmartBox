@@ -33,12 +33,20 @@ public class Component implements Serializable {
 		Field[] fieldArray = this.getClass().getDeclaredFields();
 		for(int i = 0; i < fieldArray.length; i++) {
 			//if the type of field[i] is an interface, then add it to fields and requiredInterfaces ???
+			Class<?> fieldType = fieldArray[i].getType();
+
+			if (fieldType.isInterface()) {
+				fields.put(fieldType, fieldArray[i]);
+				requiredInterfaces.add(fieldType);
+			}
 		}
 	}
 
 	// initializes provided interfaces
 	public void computeProvidedInterfaces() {
 		 // get interfaces implemented by the class of this component and add them to providedInterfaces
+		Class<?>[] interfaces = getClass().getInterfaces();
+        providedInterfaces.addAll(Arrays.asList(interfaces));
 	}
 
 	// set the field of this object to the provider
